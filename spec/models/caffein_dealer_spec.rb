@@ -28,5 +28,6 @@ describe CaffeinDealer do
     end
 
   end
+
 end
 

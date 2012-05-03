@@ -1,5 +1,6 @@
 class CaffeinDealer
 
+  attr_accessor :name
   attr_reader :entries
   attr_writer :review
 
@@ -9,6 +10,10 @@ class CaffeinDealer
 
   def entries
     @entries
+  end
+
+  def name
+    @name ||= 'Starchucks'
   end
 
   def new_review(*args)
