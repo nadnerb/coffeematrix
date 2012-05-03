@@ -1,8 +1,8 @@
 %hr
 %article
   %header
+    %h3= entry.title
     %p
       %time
-        = entry.published_date
-    %h3= entry.title
+        = entry.published_date.to_s(:long)
 

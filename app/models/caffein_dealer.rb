@@ -17,7 +17,7 @@ class CaffeinDealer
   end
 
   def name
-    @name ||= 'Starchucks'
+    @name ||= 'Some hipster joint'
   end
 
   def new_review(*args)
