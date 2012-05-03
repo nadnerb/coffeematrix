@@ -10,8 +10,8 @@ gem install bundler
 
 add this to your .bash_profile
 
-  alias bi="bundle install --binstubs=.bin"
-  export PATH="./.bin:$PATH"
+> alias bi="bundle install --binstubs=.bin"
+> export PATH="./.bin:$PATH"
 
 ***
 
