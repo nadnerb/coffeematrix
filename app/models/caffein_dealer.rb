@@ -12,6 +12,10 @@ class CaffeinDealer
     @entries
   end
 
+  def add_entry(entry)
+    entries << entry
+  end
+
   def name
     @name ||= 'Starchucks'
   end

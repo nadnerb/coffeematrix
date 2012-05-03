@@ -1,0 +1,9 @@
+%h1 Write review
+= simple_form_for @review do |f|
+  .container
+    %fieldset
+      .field
+        = f.input :title
+      .field
+        = f.submit
+

@@ -1,7 +1,8 @@
 Coffeematrix::Application.routes.draw do
   root :to => 'caffein_dealers#index'
 
-  get "caffein_dealers/index"
+  get 'caffein_dealers/index'
+  resources 'reviews'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

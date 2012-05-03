@@ -29,5 +29,18 @@ describe CaffeinDealer do
 
   end
 
+  describe '#add_entry' do
+
+    let(:entry) { stub!(:review) }
+
+    before do
+      subject.add_entry(entry)
+    end
+
+    it 'should add new entry to entries' do
+      subject.entries.should include(entry)
+    end
+  end
+
 end
 
