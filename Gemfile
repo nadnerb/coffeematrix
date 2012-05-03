@@ -6,7 +6,7 @@ gem 'rails', '3.2.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :production do
-  gem 'mysql2'
+  #gem 'mysql2'
 end
 
 
@@ -21,7 +21,9 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'pg'
+  gem "capybara"
+  gem "rspec-rails"
+  #gem 'pg'
 end
 gem "github", ">= 0.7.0", :require => nil, :group => [:development]
 
@@ -30,7 +32,4 @@ gem "unicorn"
 gem 'foreman', '0.45.0'
 gem 'haml-rails'
 gem 'jquery-rails'
-
-gem "capybara", :group => [:development, :test]
-gem "rspec-rails", :group => [:development, :test]
 
