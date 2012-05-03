@@ -8,12 +8,10 @@ class Review
     attrs.each { |k,v| send("#{k}=",v) }
   end
 
-  def publish
+  def publish(clock = DateTime)
+    self.published_date = clock.now
+    caffein_dealer.add_entry(self)
     return true
-  end
-
-  def published_date
-    Time.zone.now
   end
 
   def persisted?
