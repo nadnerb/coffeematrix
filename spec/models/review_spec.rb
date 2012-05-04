@@ -4,6 +4,9 @@ describe Review do
 
   context 'validations' do
     it { should validate_presence_of(:title) }
+    it { should validate_numericality_of(:consistency) }
+    it { should validate_numericality_of(:price) }
+    it { should validate_numericality_of(:speed) }
   end
 
   describe '#publish' do
@@ -82,6 +85,30 @@ describe Review do
         end
       end
 
+    end
+
+  end
+
+  describe '#rank' do
+
+    subject do
+      Review.new.tap do |r|
+        r.consistency = 3
+        r.price = 2
+        r.speed = 5
+      end
+    end
+
+    let(:rank) do
+      Rank.new.tap do |r|
+        r.consistency = 3
+        r.price = 2
+        r.speed = 5
+      end
+    end
+
+    it 'should return a rank' do
+      subject.rank.should == rank
     end
 
   end

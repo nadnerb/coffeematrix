@@ -4,16 +4,16 @@ class CaffeinDealer
   attr_reader :entries
   attr_writer :review
 
-  def initialize
-    @entries = []
+  def initialize(entries = [])
+    @entries = entries
   end
 
   def entries
-    @entries
+    @entries.sort_by{ |e| e.rank }.reverse
   end
 
   def add_entry(entry)
-    entries << entry
+    @entries << entry
   end
 
   def name

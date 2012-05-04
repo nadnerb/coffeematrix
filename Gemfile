@@ -21,11 +21,13 @@ group :assets do
 end
 
 group :development, :test do
-  gem "capybara"
+  gem "capybara", '1.1.2'
   gem "rspec-rails"
   gem 'shoulda-matchers', '1.0.0'
   #gem 'pg'
+  gem 'awesome_print', '~>1.0.2'
 end
+
 gem "github", ">= 0.7.0", :require => nil, :group => [:development]
 
 gem "simple_form"

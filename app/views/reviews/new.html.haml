@@ -1,9 +1,15 @@
 %h1 Write review
-= simple_form_for @review do |f|
+= simple_form_for @review, :html => {:class => 'form-verticle'} do |f|
   .container
     %fieldset
       .field
         = f.input :title
+      .field
+        = f.input :consistency, :collection => 1..5
+      .field
+        = f.input :price, :collection => 1..5
+      .field
+        = f.input :speed, :collection => 1..5
       .field
         = f.submit
 

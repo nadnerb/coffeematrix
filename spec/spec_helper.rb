@@ -2,11 +2,23 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require 'capybara/rspec'
 require 'rspec/autorun'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :firefox).tap do |driver|
+    driver.browser.manage.window.size = OpenStruct.new(:width => 1400, :height => 900)
+  end
+end
+
+# brew install chromedriver for selenium to drive chrome. (not all tests will pass, YET)
+Capybara.register_driver :selenium_chrome do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
 
 RSpec.configure do |config|
   # ## Mock Framework
@@ -16,6 +28,11 @@ RSpec.configure do |config|
   # config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr
+
+  config.mock_with :rspec
+
+  Capybara.javascript_driver = :selenium
+  Capybara.javascript_driver = :selenium_chrome if ENV.has_key?('CHROME')
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   #config.fixture_path = "#{::Rails.root}/spec/fixtures"

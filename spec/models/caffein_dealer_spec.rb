@@ -9,6 +9,25 @@ describe CaffeinDealer do
       subject.entries.should_not be_nil
     end
 
+    context 'order entries by rank' do
+
+      let(:review_1) { Review.new }
+      let(:review_2) { Review.new }
+      let(:review_3) { Review.new }
+
+      subject do
+        review_1.should_receive(:rank).and_return(1)
+        review_2.should_receive(:rank).and_return(3)
+        review_3.should_receive(:rank).and_return(2)
+        CaffeinDealer.new([review_1, review_2, review_3])
+      end
+
+      it 'should order reviews by rank' do
+        subject.entries.should == [review_2, review_3, review_1]
+      end
+
+    end
+
   end
 
   describe '#new_review' do
@@ -31,7 +50,7 @@ describe CaffeinDealer do
 
   describe '#add_entry' do
 
-    let(:entry) { stub!(:review) }
+    let(:entry) { Review.new }
 
     before do
       subject.add_entry(entry)
