@@ -9,6 +9,8 @@ group :production do
   #gem 'mysql2'
 end
 
+gem 'mongo_mapper'
+gem 'bson_ext'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -26,6 +28,7 @@ group :development, :test do
   gem 'shoulda-matchers', '1.0.0'
   #gem 'pg'
   gem 'awesome_print', '~>1.0.2'
+  gem 'database_cleaner'
 end
 
 gem "github", ">= 0.7.0", :require => nil, :group => [:development]

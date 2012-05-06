@@ -1,9 +1,18 @@
 class Review
   extend ActiveModel::Naming
   include ActiveModel::Conversion
-  include ActiveModel::Validations
+
+  include MongoMapper::EmbeddedDocument
+  timestamps!
 
   attr_accessor :caffein_dealer, :title, :published_date, :consistency, :price, :speed
+
+  belongs_to :caffein_dealer
+  key :title, String
+  key :published_date, Date
+  key :consistency, Integer
+  key :price, Integer
+  key :speed, Integer
 
   validates :title, presence: true
   validates :consistency, :presence => true, :numericality => { :only_integer => true }

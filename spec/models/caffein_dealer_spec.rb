@@ -15,11 +15,12 @@ describe CaffeinDealer do
       let(:review_2) { Review.new }
       let(:review_3) { Review.new }
 
-      subject do
+      before do
         review_1.should_receive(:rank).and_return(1)
         review_2.should_receive(:rank).and_return(3)
         review_3.should_receive(:rank).and_return(2)
-        CaffeinDealer.new([review_1, review_2, review_3])
+
+        subject.should_receive(:reviews).and_return([review_1, review_2, review_3])
       end
 
       it 'should order reviews by rank' do

@@ -1,19 +1,27 @@
 class CaffeinDealer
 
+  include MongoMapper::Document
+
+  key :name, String
+  many :reviews
+
   attr_accessor :name
   attr_reader :entries
   attr_writer :review
 
-  def initialize(entries = [])
-    @entries = entries
+  def initialize(reviews = [])
+    push_all(:reviews => reviews)
   end
 
   def entries
-    @entries.sort_by{ |e| e.rank }.reverse
+    reviews.sort_by{ |e| e.rank }.reverse
   end
 
   def add_entry(entry)
-    @entries << entry
+    # wanted @entries << so continue to not expose reviews
+    # this doesn't feel quite right
+    reviews << entry
+    self.save
   end
 
   def name

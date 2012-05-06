@@ -42,6 +42,8 @@ module Coffeematrix
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
+    config.autoload_paths += %W( #{config.root}/lib #{config.root}/lib/**/** )
+
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
@@ -61,5 +63,10 @@ module Coffeematrix
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    #mogomapper
+    config.generators do |g|
+      g.orm :mongo_mapper
+    end
   end
 end
