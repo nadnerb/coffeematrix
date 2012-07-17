@@ -2,8 +2,7 @@ require "spec_helper"
 
 
 feature %q{
-  When adding a review to a caffein dealer
-  #As a coffee matrix reviewer
+  When adding a review to coffeematrix
   I would like to see reviews in order by rank
 } do
 
@@ -16,8 +15,8 @@ feature %q{
   end
 
   scenario 'when I log in and add a review' do
-    login_user('foo', 'password')
 
+    login_user('foo', 'password')
     visit root_path
 
     click_link('write review')
