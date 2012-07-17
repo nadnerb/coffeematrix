@@ -31,7 +31,12 @@
           <%= link_to 'Coffeematrix', root_path, :class => 'brand' %>
           <div class="container nav-collapse">
             <ul class="nav">
-              <li><%= link_to "login", "#"  %></li>
+              <% if current_user %>
+                <li><%= link_to "Log out", logout_path %></li>
+              <% else %>
+                <li><%= link_to "Sign up", signup_path %></li>
+                <li><%= link_to "Log in", login_path %></li>
+              <% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -52,6 +57,7 @@
               <%= yield %>
             </div>
             <div class="span3">
+              <% if current_user %>
               <div class="well sidebar-nav">
                 <h3>Reviews</h3>
                 <ul class="nav nav-list">
@@ -59,6 +65,7 @@
                   <li><%= link_to "write review", new_review_path  %></li>
                 </ul>
               </div><!--/.well -->
+              <% end %>
             </div><!--/span-->
         </div><!--/row-->
       </div><!--/content-->

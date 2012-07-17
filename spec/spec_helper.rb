@@ -36,6 +36,9 @@ RSpec.configure do |config|
   Capybara.javascript_driver = :selenium
   Capybara.javascript_driver = :selenium_chrome if ENV.has_key?('CHROME')
 
+  include ::Sorcery::TestHelpers::Internal
+  include ::Sorcery::TestHelpers::Internal::Rails
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   #config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -68,5 +71,19 @@ RSpec.configure do |config|
 
   config.after(:each) do
     DatabaseCleaner.clean
+  end
+end
+
+RSpec.configure do |config|
+  config.include Sorcery::TestHelpers::Rails
+end
+
+module Sorcery
+  module TestHelpers
+    module Rails
+      def login_user(user, password)
+        page.driver.post(sessions_url, { username: user, password: password})
+      end
+    end
   end
 end
